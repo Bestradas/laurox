@@ -1,0 +1,111 @@
+<div>
+    <h2>Pedidos de Clientes</h2>
+    <jh-alert></jh-alert>
+	<div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <button class="btn btn-primary" ui-sref="pedidocliente.new">
+                    <span class="glyphicon glyphicon-flash"></span> <span translate="lauroxApp.customerorder.home.createLabel">Create a new Pedido</span>
+                </button>
+            </div>
+        </div>
+    </div>
+	
+    <div class="modal fade" id="approvePedidoClienteConfirmation">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="approveForm" ng-submit="confirmApprove(pedidoCliente.nmPedido)">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" translate="entity.approve.title">Confirm approve operation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>¿Esta seguro que desea aprobar el Pedido Cliente?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+                        </button>
+                        <button type="submit" ng-disabled="approveForm.$invalid" class="btn btn-success">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.approve">Approve</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="rejectPedidoClienteConfirmation">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="rejectForm" ng-submit="confirmReject(pedidoCliente.nmPedido)">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" translate="entity.reject.title">Confirm reject operation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>¿Esta seguro que desea rechazar el Pedido Cliente?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+                        </button>
+                        <button type="submit" ng-disabled="rejectForm.$invalid" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.reject">Reject</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th translate="global.field.id">ID</th>
+                    <th translate="lauroxApp.customerorder.nmCliente">nmCliente</th>
+                    <th translate="lauroxApp.customerorder.fePedido">fePedido</th>
+                    <th translate="lauroxApp.customerorder.feEntrega">feEntrega</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="pedidocliente in pedidoClientes" ng-if='isAdmin || pedidocliente.nmCliente.id==settingsAccount.id'>
+                    <td><a ui-sref="pedidocliente.detail({id:pedidocliente.nmPedido})">{{pedidocliente.nmPedido}}</a></td>
+                    <td>{{pedidocliente.nmCliente.firstName}} {{pedidocliente.nmCliente.lastName}}</td>
+                    <td>{{pedidocliente.fePedido  | date:'dd-MM-yyyy'}}</td>
+                    <td ng-if="pedidocliente.feEntrega == null"><span class="label label-danger ng-scope"><span translate="lauroxApp.customerorder.pendingApprove"></span></span></td>
+                    <td ng-if="pedidocliente.feEntrega != null && pedidocliente.status==1"><span class="label label-success ng-scope">{{pedidocliente.feEntrega | date:'dd-MM-yyyy'}}</span></td>
+                    <td ng-if="pedidocliente.feEntrega != null && pedidocliente.status==2"><span class="label label-danger ng-scope">{{pedidocliente.feEntrega | date:'dd-MM-yyyy'}}</span></td>
+                    <td>
+                        <button type="submit"
+                                ui-sref="pedidocliente.detail({nmPedido:pedidocliente.nmPedido})"
+                                class="btn btn-info btn-sm">
+                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
+                        </button>
+                        <button ng-if="pedidocliente.feEntrega == null && isAdmin" type="submit"
+                                ng-click="delete(pedidocliente.nmPedido,'appr')"
+                                class="btn btn-success btn-sm">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.approve"> Approve</span>
+                        </button>
+                        <button ng-if="pedidocliente.feEntrega == null && isAdmin" type="submit"
+                                ng-click="delete(pedidocliente.nmPedido,'rej')"
+                                class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.reject"> Reject</span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <nav>
+            <ul class="pager">
+                <li ng-show="links['first'] >= 0" ng-click="loadPage(links['first'])"><a href="#">&lt;&lt;</a></li>
+                <li ng-show="page > 0" ng-click="loadPage(links['prev'] || 0)"><a href="#">&lt;</a></li>
+                <li ng-show="links['next']" ng-click="loadPage(links['next'])"><a href="#">&gt;</a></li>
+                <li ng-show="links['last'] > 0" ng-click="loadPage(links['last'])"><a href="#">&gt;&gt;</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>

@@ -1,0 +1,79 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "proveedor_id_fk",
+            "otherEntityName": "proveedor",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "NM_PROVEEDOR"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "idproducto",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "nombreProducto",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength",
+                "pattern"
+            ],
+            "fieldValidateRulesMinlength": "5",
+            "fieldValidateRulesMaxlength": "150",
+            "fieldValidateRulesPattern": "(^[a-zA-Z0-9 ]*$)",
+            "fieldValidateRulesPatternJava": "(^[a-zA-Z0-9 ]*$)"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "idproveedor",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "descripcion",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength",
+                "pattern"
+            ],
+            "fieldValidateRulesMaxlength": "300",
+            "fieldValidateRulesPattern": "(^[a-zA-Z0-9 ]*$)",
+            "fieldValidateRulesPatternJava": "(^[a-zA-Z0-9 ]*$)"
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "numeroLote",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength",
+                "pattern"
+            ],
+            "fieldValidateRulesMaxlength": "150",
+            "fieldValidateRulesPattern": "(^[a-zA-Z0-9 ]*$)",
+            "fieldValidateRulesPatternJava": "(^[a-zA-Z0-9 ]*$)"
+        },
+        {
+            "fieldId": 6,
+            "fieldName": "precioUnitario",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20151003062733",
+    "dto": "no",
+    "pagination": "pager"
+}

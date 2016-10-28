@@ -1,0 +1,25 @@
+{
+    "lauroxApp": {
+        "producto" : {
+            "home": {
+                "title": "Productos",
+                "createLabel": "Créer un nouveau Producto",
+                "createOrEditLabel": "Créer ou éditer un Producto"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Producto {{ id }} ?"
+            },
+            "detail": {
+                "title": "Producto"
+            },
+            "idproducto": "Idproducto",
+            "nombreProducto": "NombreProducto",
+            "idproveedor": "Idproveedor",
+            "descripcion": "Descripcion",
+            "numeroLote": "NumeroLote",
+            "precioUnitario": "PrecioUnitario",
+            "proveedor_id_fk": "Proveedor_id_fk"
+        }
+    }
+}
+

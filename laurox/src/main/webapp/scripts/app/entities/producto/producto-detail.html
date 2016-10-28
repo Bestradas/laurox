@@ -1,0 +1,73 @@
+
+<div>
+    <h2><span translate="lauroxApp.producto.detail.title">Producto</span> {{producto.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th translate="entity.detail.field">Field</th>
+                <th translate="entity.detail.value">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <img id="image" src="{{producto.foto!=null?'../../../../productImages/'+producto.foto:'#'}}" alt="Imagen del producto" style="max-width: 400px; max-height: 300px;" />        
+            </tr>
+            <tr>
+                <td>
+                    <span translate="lauroxApp.producto.idproducto">Idproducto</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{producto.idproducto}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="lauroxApp.producto.nombreProducto">NombreProducto</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{producto.nombreProducto}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="lauroxApp.producto.idproveedor">Idproveedor</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{producto.idproveedor.nit}} - {{producto.idproveedor.razonSocial}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="lauroxApp.producto.descripcion">Descripcion</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{producto.descripcion}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="lauroxApp.producto.numeroLote">NumeroLote</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{producto.numeroLote}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="lauroxApp.producto.precioUnitario">PrecioUnitario</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{producto.precioUnitario}}</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

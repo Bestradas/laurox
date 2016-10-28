@@ -1,0 +1,21 @@
+{
+  "generator-jhipster": {
+    "baseName": "laurox",
+    "packageName": "com.laurox.lauroxonline",
+    "packageFolder": "com/laurox/lauroxonline",
+    "authenticationType": "session",
+    "hibernateCache": "ehcache",
+    "clusteredHttpSession": "no",
+    "websocket": "no",
+    "databaseType": "sql",
+    "devDatabaseType": "h2Memory",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": "no",
+    "useSass": false,
+    "buildTool": "maven",
+    "frontendBuilder": "grunt",
+    "javaVersion": "8",
+    "enableTranslation": true,
+    "rememberMeKey": "9b7b69e2581a789fc8b6218d3553d03f593381a1"
+  }
+}

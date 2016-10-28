@@ -1,0 +1,28 @@
+{
+    "lauroxApp": {
+        "customerorder" : {
+            "home": {
+                "title": "Pedido Cliente"
+            },
+            "delete": {
+                "question": "Esta seguro que desea eliminar el pedido {{ id }}?"
+            },
+            "detail": {
+                "title": "Pedido cliente",
+                "title2": "Detalle del Cliente"
+            },
+            "nmCliente": "Identificación del cliente*",
+            "fePedido": "Fecha de pedido*",
+            "feEntrega": "Fecha de entrega real",
+            "total": "Valor total pedido",
+            "nmproducto": "Producto",
+            "precioCompra": "Precio unitario(compra)",
+            "cantidad": "Cantidad",
+            "precioVenta": "Precio unitario actual(Venta)",
+            "subtotal": "Subtotal",
+            "updated": "El pedido ha sido editado exitosamente",
+			"created": "El pedido ha sido creado exitosamente",
+			"deleted": "El pedido ha sido eliminado exitosamente"   
+        }
+    }
+}

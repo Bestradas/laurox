@@ -1,0 +1,16 @@
+{
+    "main": {
+        "title": "¡Bienvenido, Laurox Online!",
+        "subtitle": "Lo que necesitas a tu alcance",
+        "logged": {
+            "message": "Esta conectado como \"{{username}}\"."
+        },
+        "question": "Si tiene preguntas sobre Laurox:",
+        "link": {
+            "homepage": "Página de inicio de Laurox",
+            "contact": "contacto @Laurox en Twitter"
+        },
+        "like": "Si le gusta Laurox Online, danos tu Me gusta en",
+        "facebook": "Facebook"
+    }
+}

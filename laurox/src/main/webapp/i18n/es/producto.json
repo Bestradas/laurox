@@ -1,0 +1,28 @@
+{
+    "lauroxApp": {
+        "producto" : {
+            "home": {
+                "title": "Productos",
+                "createLabel": "Crear un nuevo Producto",
+                "createOrEditLabel": "Crear o editar un Producto"
+            },
+            "delete": {
+                "question": "Esta seguro que desea eliminar el producto {{ id }}?"
+            },
+            "detail": {
+                "title": "Producto"
+            },
+            "idproducto": "Identificación del producto*",
+            "nombreProducto": "Nombre del producto*",
+            "idproveedor": "Identificación de proveedor*",
+            "descripcion": "Descripción*",
+            "numeroLote": "Numero de lote",
+            "precioUnitario": "Precio unitario*",
+            "peso": "Peso (grs)",
+            "foto": "Imagen producto",
+            "updated": "El producto ha sido editado exitosamente",
+			"created": "El producto ha sido creado exitosamente",
+			"deleted": "El producto ha sido eliminado exitosamente"   
+        }
+    }
+}

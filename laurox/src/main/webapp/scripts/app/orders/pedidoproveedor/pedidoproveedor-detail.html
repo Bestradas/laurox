@@ -1,0 +1,122 @@
+
+<div>
+    <h2><span translate="lauroxApp.providerorder.detail.title">Pedido Proveedor</span> {{pedidoproveedor.nmPedido}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th translate="entity.detail.field">Field</th>
+                <th translate="entity.detail.value">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span translate="lauroxApp.providerorder.nmPedido">nmPedido</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{pedidoproveedor.nmPedido}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="lauroxApp.providerorder.nmProveedor">razonSocial</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{pedidoproveedor.nmProveedor.nit}} - {{pedidoproveedor.nmProveedor.razonSocial}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="lauroxApp.providerorder.fePedido">fePedido</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{pedidoproveedor.fePedido | date:'dd-MM-yyyy'}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="lauroxApp.providerorder.feCompra">feCompra</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{pedidoproveedor.feCompra | date:'dd-MM-yyyy'}}</span>
+                </td>
+            </tr>
+            <tr ng-if="pedidoproveedor.feEntrega == null">
+                <td>
+                    <span translate="lauroxApp.providerorder.feEntrega">feEntrega</span>
+                </td>
+                <td>
+                    <span class="form-control-static label label-danger ng-scope">Pendiente de Enterga</span>
+                </td>
+            </tr>
+            <tr ng-if="pedidoproveedor.feEntrega != null">
+                <td>
+                    <span translate="lauroxApp.providerorder.feEntrega">feEntrega</span>
+                </td>
+                <td>
+                    <span class="form-control-static label label-success ng-scope">{{pedidoproveedor.feEntrega | date:'dd-MM-yyyy'}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="lauroxApp.providerorder.total">total</span>
+                </td>
+                <td>
+                    <span class="form-control-static label label-success ng-scope">{{pedidoproveedor.total | currency:"COP$"}}</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <h3><span translate="lauroxApp.providerorder.detail.title2">Detalle del Pedido</span></h3>
+    
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th translate="global.field.id">ID</th>
+                    <th translate="lauroxApp.providerorder.nmproducto">nmproducto</th>
+                    <th translate="lauroxApp.providerorder.precioCompra">precioCompra</th>
+                    <th translate="lauroxApp.providerorder.cantidad">cantidad</th>
+                    <th translate="lauroxApp.providerorder.subtotal">subtotal</th>
+					<th translate="lauroxApp.providerorder.precioVenta">precioVenta</th>                    
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="detallePedido in pedidoproveedor.detallePedido">
+                    <td><a ui-sref="producto.detail({idproducto:detallePedido.nmProducto.idproducto})">{{detallePedido.nmProducto.id}}</a></td>
+                    <td>{{detallePedido.nmProducto.nombreProducto}}</td>
+                    <td>{{detallePedido.precioUnitario | currency:"COP$"}}</td>
+                    <td>{{detallePedido.nmCantidad}}</td>
+                    <td><span class="label label-info ng-binding">{{detallePedido.precioUnitario*detallePedido.nmCantidad | currency:"COP$"}}</span></td>
+                    <td ng-if="pedidoproveedor.feEntrega == null && detallePedido.nmProducto.precioUnitario <= detallePedido.precioUnitario"><span class="label label-danger ng-scope">{{detallePedido.nmProducto.precioUnitario | currency:"COP$"}}</span></td>
+                    <td ng-if="pedidoproveedor.feEntrega != null || detallePedido.nmProducto.precioUnitario > detallePedido.precioUnitario">{{detallePedido.nmProducto.precioUnitario | currency:"COP$"}}</td>
+                    <td>
+                        <button type="submit"
+                                ui-sref="producto.detail({idproducto:detallePedido.nmProducto.idproducto})"
+                                class="btn btn-info btn-sm">
+                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <nav>
+            <ul class="pager">
+                <li ng-show="links['first'] >= 0" ng-click="loadPage(links['first'])"><a href="#">&lt;&lt;</a></li>
+                <li ng-show="page > 0" ng-click="loadPage(links['prev'] || 0)"><a href="#">&lt;</a></li>
+                <li ng-show="links['next']" ng-click="loadPage(links['next'])"><a href="#">&gt;</a></li>
+                <li ng-show="links['last'] > 0" ng-click="loadPage(links['last'])"><a href="#">&gt;&gt;</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

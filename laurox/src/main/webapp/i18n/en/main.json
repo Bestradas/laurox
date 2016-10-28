@@ -1,0 +1,16 @@
+{
+    "main": {
+        "title": "Welcome, Laurox Online!",
+        "subtitle": "This is your homepage",
+        "logged": {
+            "message": "You are logged in as user \"{{username}}\"."
+        },
+        "question": "If you have any question on Laurox:",
+        "link": {
+            "homepage": "Laurox homepage",
+            "contact": "contact @Laurox on Twitter"
+        },
+        "like": "If you like LAurox Online, don't forget to give us a star on",
+        "github": "Github"
+    }
+}

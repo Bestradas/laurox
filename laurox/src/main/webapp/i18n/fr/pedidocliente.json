@@ -1,0 +1,32 @@
+{
+    "lauroxApp": {
+        "cutomerorder" : {
+            "home": {
+                "title": "Pedido Cliente",
+                "createLabel": "Crear un nuevo Pedido a Proveedor",
+                "createOrEditLabel": "Crear o editar un Pedido a Proveedor"
+            },
+            "delete": {
+                "question": "Esta seguro que desea eliminar el pedido {{ id }}?"
+            },
+            "detail": {
+                "title": "Pedido Cliente",
+                "title2": "Detalle del Pedido"
+            },
+            "nmPedido": "Identificación del pedido*",
+            "nmProveedor": "Proveedor*",
+            "fePedido": "Fecha de pedido*",
+            "feCompra": "Fecha de entrega planeada*",
+            "feEntrega": "Fecha de entrega real",
+            "total": "Valor total pedido",
+            "nmproducto": "Producto",
+            "precioCompra": "Precio unitario(compra)",
+            "cantidad": "Cantidad",
+            "precioVenta": "Precio unitario actual(Venta)",
+            "subtotal": "Subtotal",
+            "updated": "El pedido ha sido editado exitosamente",
+			"created": "El pedido ha sido creado exitosamente",
+			"deleted": "El pedido ha sido eliminado exitosamente"   
+        }
+    }
+}

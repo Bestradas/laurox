@@ -1,0 +1,159 @@
+<script>
+	$('#field_idproveedor').select2({
+		placeholder : "Seleccione un proveedor",
+		allowClear : true,
+		width : 'resolve'
+	});	
+</script>
+<form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myProductoLabel" translate="lauroxApp.producto.home.createOrEditLabel">Create or edit a Producto</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group col-xs-9">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="producto.id" readonly>
+        </div>
+        <div class="form-group col-xs-8">
+        	<div class="col-xs-5">
+	            <label translate="lauroxApp.producto.idproducto" for="field_idproducto">Idproducto</label>
+	            <input type="number" class="form-control" name="idproducto" id="field_idproducto"
+	                    ng-model="producto.idproducto"
+	                    required>
+	            <div ng-show="editForm.idproducto.$invalid">
+	                <p class="help-block"
+	                    ng-show="editForm.idproducto.$error.required" translate="entity.validation.required">
+	                    This field is required.
+	                </p>
+	                <p class="help-block"
+	                    ng-show="editForm.idproducto.$error.number" translate="entity.validation.number">
+	                    This field should be a number.
+	                </p>
+	            </div>
+            </div>
+	        <div class="col-xs-8">
+	            <label translate="lauroxApp.producto.nombreProducto" for="field_nombreProducto">NombreProducto</label>
+	            <input type="text" class="form-control" name="nombreProducto" id="field_nombreProducto"
+	                    ng-model="producto.nombreProducto"
+	                    required ng-minlength="5" ng-maxlength="150" ng-pattern="/(^[a-zA-Z0-9 ]*$)/">
+	            <div ng-show="editForm.nombreProducto.$invalid">
+	                <p class="help-block"
+	                    ng-show="editForm.nombreProducto.$error.required" translate="entity.validation.required">
+	                    This field is required.
+	                </p>
+	                <p class="help-block"
+	                    ng-show="editForm.nombreProducto.$error.minlength" translate="entity.validation.minlength" translate-value-min="5">
+	                    This field is required to be at least 5 characters.
+	                </p>
+	                <p class="help-block"
+	                    ng-show="editForm.nombreProducto.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="150">
+	                    This field cannot be longer than 150 characters.
+	                </p>
+	                <p class="help-block"
+	                    ng-show="editForm.nombreProducto.$error.pattern" translate="entity.validation.pattern" translate-value-pattern="(^[a-zA-Z0-9 ]*$)">
+	                    This field should follow pattern "(^[a-zA-Z0-9 ]*$)".
+	                </p>
+	            </div>
+	        </div>
+	        <div class="col-xs-5">
+	            <label translate="lauroxApp.producto.idproveedor" for="field_idproveedor">Idproveedor</label>
+	            <select ng-model="producto.idproveedor" name="idproveedor" id="field_idproveedor"
+				    ng-options="p.razonSocial for p in proveedors track by p.nit">
+				</select>
+	            <div ng-show="editForm.idproveedor.$invalid">
+	                <p class="help-block"
+	                    ng-show="editForm.idproveedor.$error.required" translate="entity.validation.required">
+	                    This field is required.
+	                </p>
+	                <p class="help-block"
+	                    ng-show="editForm.idproveedor.$error.number" translate="entity.validation.number">
+	                    This field should be a number.
+	                </p>
+	            </div>
+	        </div>
+	        <div class="col-xs-12">
+	            <label translate="lauroxApp.producto.descripcion" for="field_descripcion">Descripcion</label>
+	            <textarea type="text" class="form-control" name="descripcion" id="field_descripcion"
+	                    ng-model="producto.descripcion" style="width: 529px; height: 138px;"
+	                    ng-maxlength="300" ng-pattern="/(^[a-zA-Z0-9 ]*$)/"></textarea>
+	            <div ng-show="editForm.descripcion.$invalid">
+		                <p class="help-block"
+		                    ng-show="editForm.descripcion.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="300">
+		                    This field cannot be longer than 300 characters.
+		                </p>
+		                <p class="help-block"
+		                    ng-show="editForm.descripcion.$error.pattern" translate="entity.validation.pattern" translate-value-pattern="(^[a-zA-Z0-9 ]*$)">
+		                    This field should follow pattern "(^[a-zA-Z0-9 ]*$)".
+		                </p>
+		            </div>
+	        </div>
+        </div>
+        <div class="form-group col-xs-4">
+            <label translate="lauroxApp.producto.foto" for="field_foto">Imagen del producto</label><br>
+            <img id="image" src="{{producto.foto!=null?'../../../../productImages/'+producto.foto:'#'}}" alt="Imagen del producto" style="max-width: 400px; max-height: 300px;" />
+            <input type="file" class="form-control input-lg" name="fotoChoose" id="field_foto_choose" onchange="angular.element(this).scope().loadImage(this); angular.element(this).scope().$digest();" accept="image/gif, image/jpeg, image/png">
+            <input type="hidden" class="form-control" name="foto" id="field_foto"
+                    ng-model="producto.foto">          
+        </div>
+        <div class="form-group col-xs-12">
+        <div class="form-group col-xs-4">
+            <label translate="lauroxApp.producto.numeroLote" for="field_numeroLote">NumeroLote</label>
+            <input type="text" class="form-control" name="numeroLote" id="field_numeroLote"
+                    ng-model="producto.numeroLote"
+                    ng-maxlength="150" ng-pattern="/(^[a-zA-Z0-9 ]*$)/">
+            <div ng-show="editForm.numeroLote.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.numeroLote.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="150">
+                    This field cannot be longer than 150 characters.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.numeroLote.$error.pattern" translate="entity.validation.pattern" translate-value-pattern="(^[a-zA-Z0-9 ]*$)">
+                    This field should follow pattern "(^[a-zA-Z0-9 ]*$)".
+                </p>
+            </div>
+        </div>
+        <div class="form-group col-xs-4">
+            <label translate="lauroxApp.producto.precioUnitario" for="field_precioUnitario">PrecioUnitario</label>
+            <input type="number" class="form-control" name="precioUnitario" id="field_precioUnitario"
+                    ng-model="producto.precioUnitario"
+                    required>
+            <div ng-show="editForm.precioUnitario.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.precioUnitario.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.precioUnitario.$error.number" translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group col-xs-4">
+            <label translate="lauroxApp.producto.peso" for="field_peso">Peso (grs)</label>
+            <input type="number" class="form-control" name="peso" id="field_peso"
+                    ng-model="producto.peso">
+            <div ng-show="editForm.peso.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.peso.$error.number" translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+    	<div class="col-xs-12">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || editForm.$submitted" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+        </div>
+    </div>
+</form>

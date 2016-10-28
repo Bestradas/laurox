@@ -1,0 +1,88 @@
+<div>
+    <h2 translate="lauroxApp.providerorder.home.title">Pedidos de Proveedor</h2>
+    <jh-alert></jh-alert>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <button class="btn btn-primary" ui-sref="providerorder.new">
+                    <span class="glyphicon glyphicon-flash"></span> <span translate="lauroxApp.providerorder.home.createLabel">Create a new Pedido Proveedor</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deletePedidoProveedorConfirmation">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="deleteForm" ng-submit="confirmDelete(pedidoproveedor.nmPedido)">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" translate="entity.delete.title">Confirm delete operation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p translate="lauroxApp.providerorder.delete.question" translate-values="{id: '{{pedidoproveedor.nmPedido}}'}">Are you sure you want to delete this Pedido Proveedor?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+                        </button>
+                        <button type="submit" ng-disabled="deleteForm.$invalid" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th translate="global.field.id">ID</th>
+                    <th translate="lauroxApp.providerorder.nmProveedor">nmProveedor</th>
+                    <th translate="lauroxApp.providerorder.fePedido">fePedido</th>
+                    <th translate="lauroxApp.providerorder.feCompra">feCompra</th>
+                    <th translate="lauroxApp.providerorder.feEntrega">feEntrega</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="pedidoproveedor in pedidoproveedors">
+                    <td><a ui-sref="pedidoproveedor.detail({id:pedidoproveedor.nmPedido})">{{pedidoproveedor.nmPedido}}</a></td>
+                    <td>{{pedidoproveedor.nmProveedor.razonSocial}}</td>
+                    <td>{{pedidoproveedor.fePedido  | date:'dd-MM-yyyy'}}</td>
+                    <td>{{pedidoproveedor.feCompra  | date:'dd-MM-yyyy'}}</td>
+                    <td ng-if="pedidoproveedor.feEntrega == null"><span class="label label-danger ng-scope">Pendiente de Enterga<span></span></td>
+                    <td ng-if="pedidoproveedor.feEntrega != null"><span class="label label-success ng-scope">{{pedidoproveedor.feEntrega | date:'dd-MM-yyyy'}}</span></td>
+                    <td>
+                        <button type="submit"
+                                ui-sref="providerorder.detail({nmPedido:pedidoproveedor.nmPedido})"
+                                class="btn btn-info btn-sm">
+                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="producto.edit({id:pedidoproveedor.nmPedido})"
+                                class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
+                        </button>
+                        <button ng-if="pedidoproveedor.feEntrega == null" type="submit"
+                                ng-click="delete(pedidoproveedor.nmPedido)"
+                                class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <nav>
+            <ul class="pager">
+                <li ng-show="links['first'] >= 0" ng-click="loadPage(links['first'])"><a href="#">&lt;&lt;</a></li>
+                <li ng-show="page > 0" ng-click="loadPage(links['prev'] || 0)"><a href="#">&lt;</a></li>
+                <li ng-show="links['next']" ng-click="loadPage(links['next'])"><a href="#">&gt;</a></li>
+                <li ng-show="links['last'] > 0" ng-click="loadPage(links['last'])"><a href="#">&gt;&gt;</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>

@@ -1,0 +1,144 @@
+<script>
+	$("#field_fePedido").datepicker();
+	$("#field_feCompra").datepicker();
+	$("#field_feEntrega").datepicker();
+</script>
+<form name="editForm" role="form" novalidate ng-submit="save()"
+	show-validation>
+
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"
+			aria-hidden="true" ng-click="clear()">&times;</button>
+		<h4 class="modal-title" id="myPedidoProveedorLabel"
+			translate="lauroxApp.providerorder.home.createOrEditLabel">Create
+			or edit a Pedido Proveedor</h4>
+	</div>
+	<div class="modal-body">
+		<jh-alert-error></jh-alert-error>
+		<div class="row">
+			<div class="col-xs-5">
+				<input type="hidden" name="nmPedido"
+					ng-model="pedidoproveedor.nmPedido"> <label
+					translate="lauroxApp.providerorder.nmProveedor"
+					for="field_nmProveedor">Idproveedor</label> <select theme="select2"
+					class="form-control" ng-model="pedidoproveedor.nmProveedor"
+					name="idproveedor" id="field_idproveedor"
+					ng-options="p.razonSocial for p in proveedors track by p.nit"
+					ng-change="changeProduct()">
+				</select>
+			</div>
+		</div>
+		<div class="form-group col-xs-4">
+			<label translate="lauroxApp.providerorder.fePedido"
+				for="field_fePedido">Fecha de pedido</label> <input type="text"
+				class="form-control" name="fePedido" id="field_fePedido"
+				ng-model="pedidoproveedor.fePedido" ng-readonly="true" ng-required="required" />
+			<div ng-show="editForm.fePedido.$error.required">
+				<p class="help-block" ng-show="editForm.fePedido.$error.required"
+					translate="entity.validation.required">This field is required.
+				</p>
+			</div>
+		</div>
+		<div class="form-group col-xs-4">
+			<label translate="lauroxApp.providerorder.feCompra"
+				for="field_feCompra">Fecha de Pedido</label> <input type="text"
+				class="form-control" name="feCompra" id="field_feCompra"
+				ng-model="pedidoproveedor.feCompra" ng-readonly="true" ng-required="required" />
+			<div ng-show="editForm.feCompra.$error.required">
+				<p class="help-block" ng-show="editForm.feCompra.$error.required"
+					translate="entity.validation.required">This field is required.</p>
+			</div>
+		</div>
+		<div class="form-group col-xs-4">
+			<label translate="lauroxApp.providerorder.feEntrega"
+				for="field_feCompra">Fecha de Entrega</label> <input type="text"
+				class="form-control" name="feEntrega" id="field_feEntrega"
+				ng-model="pedidoproveedor.feEntrega" ng-readonly="true"/>
+		</div>
+		<div class="form-group col-xs-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Detalle Pedido</h3>
+				</div>
+				<div class="panel-body">
+					<div class="form-group col-xs-12">
+						<div class="col-xs-3">
+							<label translate="lauroxApp.providerorder.nmproducto"
+								for="field_nmProducto">Producto</label> <select
+								name="idproducto" id="field_idproducto"
+								ng-model="productoSelected"
+								ng-options="pro.nombreProducto for pro in productos track by pro.idproducto">
+							</select>
+						</div>
+						<div class="col-xs-3">
+							<label translate="lauroxApp.providerorder.cantidad"
+								for="field_nmProducto">Cantidad</label> <input type="number"
+								ng-model="cantidadSelected" name="cantidad" min="1" max="100">
+						</div>
+						<div class="col-xs-4">
+							<label translate="lauroxApp.providerorder.subtotal"
+								for="field_nmProducto">Subtotal</label>
+							<button class="btn btn-primary" type="button">
+								<span class="badge">{{productoSelected.precioUnitario*cantidadSelected
+									| currency:'COP$'}}</span>
+							</button>
+						</div>
+						<div class="col-xs-1">
+							<button type="button" class="btn btn-success"
+								data-dismiss="modal" ng-click="addProduct()">
+								<span class="glyphicon glyphicon-copy"></span>&nbsp;<span>Agregar</span>
+							</button>
+						</div>
+						<div class="form-group col-xs-12">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>Producto</th>
+										<th>Cantidad</th>
+										<th>Valor</th>
+									</tr>
+								</thead>
+								<tbody>
+<!-- 									<tr ng-repeat="(k,n) in productosPedidoList track by $index" -->
+<!-- 										ng-show="n != null && n != ''"> -->
+<!-- 										<th scope="row">{{n.producto.nombreProducto}}</th> -->
+<!-- 										<td><span class="badge">{{n.cantidad}}</span></td> -->
+<!-- 										<td><span class="badge">{{n.producto.precioUnitario*n.cantidad -->
+<!-- 												| currency:"COP$"}}</span></td> -->
+<!-- 									</tr> -->
+									<tr ng-repeat="n in productosPedidoList track by n.nmProducto.id">
+										<th scope="row">{{n.nmProducto.nombreProducto}}</th>
+										<td><span class="badge">{{n.nmCantidad}}</span></td>
+										<td><span class="badge">{{n.nmProducto.precioUnitario*n.nmCantidad
+												| currency:"COP$"}}</span></td>
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr>
+										<td>Total</td>
+										<td>{{total | currency:'COP$'}}</td>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<div class="col-xs-12">
+			<button type="button" class="btn btn-default" data-dismiss="modal"
+				ng-click="clear()">
+				<span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span
+					translate="entity.action.cancel">Cancel</span>
+			</button>
+			<button type="submit"
+				ng-disabled="total==0"
+				class="btn btn-primary">
+				<span class="glyphicon glyphicon-save"></span>&nbsp;<span
+					translate="entity.action.save">Save</span>
+			</button>
+		</div>
+	</div>
+</form>

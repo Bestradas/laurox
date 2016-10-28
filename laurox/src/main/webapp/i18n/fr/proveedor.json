@@ -1,0 +1,24 @@
+{
+    "lauroxApp": {
+        "proveedor" : {
+            "home": {
+                "title": "Proveedors",
+                "createLabel": "Créer un nouveau Proveedor",
+                "createOrEditLabel": "Créer ou éditer un Proveedor"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Proveedor {{ id }} ?"
+            },
+            "detail": {
+                "title": "Proveedor"
+            },
+            "nit": "Nit",
+            "razonSocial": "RazonSocial",
+            "nombreContacto": "NombreContacto",
+            "telefono": "Telefono",
+            "celular": "Celular",
+            "direccion": "Direccion"
+        }
+    }
+}
+

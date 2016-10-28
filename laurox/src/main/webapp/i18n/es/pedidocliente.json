@@ -1,0 +1,43 @@
+{
+    "lauroxApp": {
+        "customerorder" : {
+            "home": {
+                "title": "Pedido Cliente",
+                "createLabel": "Crear un nuevo Pedido",
+                "createOrEditLabel": "Crear o editar un Pedido"
+            },
+            "delete": {
+                "question": "Esta seguro que desea eliminar el pedido {{ id }}?"
+            },
+            "approve": {
+                "question": "Esta seguro que desea aprobar el pedido {{ id }}?"
+            },
+            "reject": {
+                "question": "Esta seguro que desea rechazar el pedido {{ id }}?"
+            },
+            "detail": {
+                "title": "Pedido cliente",
+                "title2": "Detalle del Pedido"
+            },
+            "nmCliente": "Identificación del cliente*",
+            "nmProveedor": "Proveedor*",
+            "fePedido": "Fecha de pedido*",
+            "feEntrega": "Fecha de aprobación/rechazo",
+            "total": "Valor total pedido",
+            "nmproducto": "Producto",
+            "precioCompra": "Precio unitario(compra)",
+            "cantidad": "Cantidad",
+            "precioVenta": "Precio unitario actual(Venta)",
+            "subtotal": "Subtotal",
+            "pendingApprove": "Pendiente de aprobación",
+            "updated": "El pedido ha sido editado exitosamente",
+			"created": "El pedido ha sido creado exitosamente",
+			"deleted": "El pedido ha sido eliminado exitosamente",
+			"approve": "El pedido ha sido aprobado exitosamente",      
+        	"rejected": "El pedido ha sido rechazado exitosamente"   
+        },
+        "customerOrders" : {
+        	"created": "El pedido ha sido creado exitosamente"
+        }
+    }
+}
